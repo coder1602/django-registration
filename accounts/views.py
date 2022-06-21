@@ -15,8 +15,8 @@ def home(request):
     return render(request , 'home.html')
 
 
-
-def login_attempt(request):
+# check for login
+def login_attempt(request): 
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -42,6 +42,8 @@ def login_attempt(request):
         return redirect('/')
 
     return render(request , 'login.html')
+
+# check for register
 
 def register_attempt(request):
 
@@ -74,14 +76,18 @@ def register_attempt(request):
 
     return render(request , 'register.html')
 
+# check for successful login/register
+
 def success(request):
     return render(request , 'success.html')
 
+# check for token message
 
 def token_send(request):
     return render(request , 'token_send.html')
 
 
+# verify the entered username and password
 
 def verify(request , auth_token):
     try:
@@ -100,8 +106,12 @@ def verify(request , auth_token):
         print(e)
         return redirect('/')
 
+# check for wrong enteries and display error message
+
 def error_page(request):
     return  render(request , 'error.html')
+
+# check for authentication , once logged in
 
 def send_mail_after_registration(email , token):
     subject = 'Your accounts need to be verified'
